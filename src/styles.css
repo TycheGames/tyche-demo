@@ -1,0 +1,77 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  #Tyche-demo {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .Test {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  #Tyche-test {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .ActorWindow{
+    position: fixed;
+    top:5%;
+    right: 10px;
+    border: 2pt inset white;
+    padding: 2pt;
+    padding-right: 2pt;
+    width: 200px;
+    height: 150px;
+    display:none;
+    border-radius: 30px;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    z-index: 0;
+  }
+  #SwapWindowGrid{
+    position: fixed;
+    top:5%;
+    right: 10px;
+    border: 2pt inset white;
+    padding: 2pt;
+    padding-right: 2pt;
+    width: 200px;
+    height: 150px;
+    display:grid;
+    border-radius: 30px;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    z-index: 0;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 5px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  .videoWindow{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    object-fit: fill;
+  }
+
+  #swapWindow{
+    position:fixed;
+    top:10%;
+    left:20%;
+    padding: 0px;
+    display:block;
+    width: 386px;
+    height:359px;
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.9);
+    z-index:0;
+  }
+
