@@ -30,7 +30,7 @@ import {Dropdown} from './component/Dropdown';
 import { VideoPlane } from "./component/VideoPlane";
 import ActorWindow from "./component/ActorWindow";
 import { SwapWindow } from "./component/UI/swapWindow";
-
+import {DashboardWindow}  from './component/UI/dashboardWindow';
 
 
 
@@ -493,7 +493,7 @@ connectBtn?.onPointerClickObservable.add(()=>{
 });
 //dashboard clicked
 dashboardBtn?.onPointerClickObservable.add(()=>{
-  console.log(refPlane.current?.isEnabled());
+ /* console.log(refPlane.current?.isEnabled());
   if(refPlane.current?.isEnabled()===false){
       refPlane.current?.setEnabled(true);
   }
@@ -507,7 +507,8 @@ dashboardBtn?.onPointerClickObservable.add(()=>{
   
   if(gameRec!.isVisible===true){
     gameRec!.isVisible=false;
-  }
+  }*/
+  DashboardWindow.showWindow();
 })
 
 //add ui close button event
@@ -569,6 +570,7 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
         
       {/** <ActorWindow></ActorWindow>*/} 
        <SwapWindow></SwapWindow>
+       <DashboardWindow></DashboardWindow>
       
       <Engine antialias adaptToDeviceRatio canvasId='Tyche-demo'>
         <Scene>
