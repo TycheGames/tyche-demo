@@ -79,6 +79,7 @@ const balancRef =useRef<Nullable<HTMLSpanElement>>(null);
     border-radius:12px ;
     width: 386px;
     height:359px;
+    z-index:4 ;
     background-color:rgba(58,58,58,1);
 `;
 
@@ -194,9 +195,6 @@ const DropDownListItem=styled.div`
     text-align: center ;
     width:70px;
     color:white;
-    background-color:red ;
-
-
 `;
 interface Pros{
    readonly inputColor:string;
@@ -288,13 +286,25 @@ const Dropdown=()=>{
             </DropDownListItem>
 
         </DropDownList>
-        <ToInput inputColor="white" data-item='test'></ToInput>
+
     </DropDownDiv>
    
     )
 }
 
-SwapWindow.showWindow =()=>{
-
-    containerRef.current!.style.display='block';
+SwapWindow.showWindow =(show:boolean)=>{
+    if(show){
+        containerRef.current!.style.display='block';
+    }else{
+        containerRef.current!.style.display='none';
+    }
+    /*
+    if(containerRef.current?.style.display===""||containerRef.current?.style.display==="none"){
+        containerRef.current.style.display='block';
+    }else{
+        if(containerRef.current?.style.display==='block'){
+            containerRef.current.style.display='none';
+        }
+    }
+    */
 }

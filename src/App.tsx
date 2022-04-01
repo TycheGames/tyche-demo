@@ -31,7 +31,8 @@ import { VideoPlane } from "./component/VideoPlane";
 import ActorWindow from "./component/ActorWindow";
 import { SwapWindow } from "./component/UI/swapWindow";
 import {DashboardWindow}  from './component/UI/dashboardWindow';
-
+import {GameWindow}  from './component/UI/gameWindow';
+import {NFTMarketWindow}  from './component/UI/NFTMarketWindow';
 
 
 
@@ -391,6 +392,7 @@ const createUI=async(instance:AdvancedDynamicTexture,scene:BABYLON.Scene)=>{
   let connectBtn=instance.getControlByName('ConnectBtn');
   let gameBtn=instance.getControlByName('GameBtn');
   let swapBtn =instance.getControlByName('SwapBtn');
+  let NFTBtn = instance.getControlByName('NFTBtn');
   
 
   //add dropdown control to swapboard
@@ -433,39 +435,53 @@ const createUI=async(instance:AdvancedDynamicTexture,scene:BABYLON.Scene)=>{
   swapBtn!.hoverCursor="pointer";
   swapcloseBtn!.hoverCursor="pointer";
   gameBtn!.hoverCursor="pointer";
+  NFTBtn!.hoverCursor='pointer';
   gamecloseBtn!.hoverCursor='pointer';
 
 
 console.log(walletOpt.status);
 
 //add UI button click event
+NFTBtn?.onPointerClickObservable.add(()=>{
+  NFTMarketWindow.showWindow(true);
+  GameWindow.showWindow(false);
+  SwapWindow.showWindow(false);
+  DashboardWindow.showWindow(false);
+
+})
 gameBtn?.onPointerClickObservable.add(()=>{
-  gameRec!.isVisible=!gameRec!.isVisible;
+  //gameRec!.isVisible=!gameRec!.isVisible;
 
   //var buttonbox=document.getElementById('buttonbox');
-  var actorWin=document.getElementById('actorWin');
-  actorWin!.style.display="grid";
+  //var actorWin=document.getElementById('actorWin');
+ // actorWin!.style.display="grid";
   
-  console.log(actorWin);
+  //console.log(actorWin);
   //buttonbox!.style.display="block";
   //showActorWin();
   //console.log(buttonb;
 
-  if(swapRec!.isVisible===true){
-    swapRec!.isVisible=false;
-  }
+  //if(swapRec!.isVisible===true){
+  //  swapRec!.isVisible=false;
+ // }
 
-  if(dashboardRec!.isVisible===true){
-    dashboardRec!.isVisible=false;
-  }
+  //if(dashboardRec!.isVisible===true){
+  //  dashboardRec!.isVisible=false;
+ // }
+ GameWindow.showWindow(true);
+ SwapWindow.showWindow(false);
+ DashboardWindow.showWindow(false);
+ NFTMarketWindow.showWindow(false);
 
 });
 swapBtn?.onPointerClickObservable.add(()=>{
   //if(swapRec!.isVisible===false){
    //swapRec!.isVisible=true;
  //}
- SwapWindow.showWindow();
- 
+ SwapWindow.showWindow(true);
+ DashboardWindow.showWindow(false);
+ GameWindow.showWindow(false);
+ NFTMarketWindow.showWindow(false);
 //if(document.getElementById('swapWindow1')!.style.display==='none'){
   //document.getElementById('swapWindow1')!.style.display='block';
 //} ;
@@ -508,7 +524,10 @@ dashboardBtn?.onPointerClickObservable.add(()=>{
   if(gameRec!.isVisible===true){
     gameRec!.isVisible=false;
   }*/
-  DashboardWindow.showWindow();
+  DashboardWindow.showWindow(true);
+  SwapWindow.showWindow(false);
+  GameWindow.showWindow(false);
+  NFTMarketWindow.showWindow(false);
 })
 
 //add ui close button event
@@ -569,6 +588,8 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
     <div >
         
       {/** <ActorWindow></ActorWindow>*/} 
+      <NFTMarketWindow></NFTMarketWindow>
+      <GameWindow></GameWindow>
        <SwapWindow></SwapWindow>
        <DashboardWindow></DashboardWindow>
       
