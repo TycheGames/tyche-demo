@@ -1,34 +1,52 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import logo from './logo.svg'
-import './App.css'
-import phaserGame from './PhaserGame'
+// import './App.css'
+// import phaserGame from './PhaserGame'
 import HelloWorldScene from './scenes/HelloWorldScene'
 
-const handleClick = () => {
-  const scene = phaserGame.scene.keys.helloworld as HelloWorldScene
-  scene.createEmitter()
-}
+function emmitGame() {}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Just a vanilla create-react-app overlaying a Phaser canvas :)</p>
-        <a
-          className="App-link"
-          href="https://github.com/kevinshen56714/create-react-phaser3-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View Source
-        </a>
-        <button className="App-button" onClick={handleClick}>
-          Or click me
-        </button>
-      </header>
-    </div>
-  )
+    const [isReady, setReady] = useState(false)
+    const [game, setGame] = useState<any>()
+    useEffect(() => {
+        // Nothing really special here... Your phaser3 config should work just fine.
+        let config = {
+            height: 400,
+            width: 600,
+            physics: { default: 'arcade' },
+            backgroundColor: '#282c34',
+            scale: {
+                // Except this should match the ID of your component host element.
+                parent: 'phaser-game',
+                mode: Phaser.Scale.FIT,
+                // mode: Phaser.Scale.ScaleModes.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+            },
+            transparent: true,
+            type: Phaser.AUTO,
+        }
+        let game = new Phaser.Game(config)
+        setGame(game)
+        // Triggered when game is fully visible.
+        game.events.on('putOnAHappyFace', setReady)
+        // Add your scene/s here (or in `scene` key of `config`).
+        game.scene.add('HelloWorldScene', HelloWorldScene, true)
+        // If you don't do this, you get duplicates of the canvas piling up
+        // everytime this component renders.
+        return () => {
+            setReady(false)
+            game.destroy(true)
+        }
+        // You must have an empty array here otherwise the game restarts every time
+        // the component renders.
+    }, [])
+    return (
+        <>
+            <div id="phaser-game" />
+        </>
+    )
 }
 
 export default App
