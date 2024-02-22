@@ -61,7 +61,7 @@ const balancRef =useRef<Nullable<HTMLSpanElement>>(null);
             left:'16px'}}>To</span>
 
             <SelectDiv>
-              <SelectInput type='text' defaultValue={'0.0'}></SelectInput>
+              <SelectInput type='text' defaultValue={'0.0'} value={balance}></SelectInput>
               <Dropdown></Dropdown>
               
             </SelectDiv>

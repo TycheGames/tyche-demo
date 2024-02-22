@@ -21,7 +21,67 @@ export const GameWindow =()=>{
             <GameboardGrid>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/stoneman.jpg'/>
+                    <GameImg src='/UI/games/version2/Aliens.png'/>
+                </ImgContainer>
+                <GamePros>
+                    <GameProsName>
+                        Aliens
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            133,4 TGT
+                        </GameProsTGTValue>
+                      
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <ImgContainer>
+                    <GameImg src='/UI/games/version2/Antarctic Adventure.png'></GameImg>
+                </ImgContainer>
+                <GamePros>
+                    <GameProsName>
+                    Antarctic Adventure
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            133,4 TGT
+                        </GameProsTGTValue>
+                      
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <ImgContainer>
+                    <GameImg src='/UI/games/version2/Bomb-man.png'></GameImg>
+                </ImgContainer>
+                <GamePros>
+                    <GameProsName>
+                    Bomb-man
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            133,4 TGT
+                        </GameProsTGTValue>
+                      
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <ImgContainer>
+                    <GameImg src='/UI/games/version2/Christmas Skiing.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
@@ -41,71 +101,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/Call-of-the-wild.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Earth Invasion.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
-                    </GameProsName>
-                    <GameProsFire>
-                     🔥🔥🔥 
-                    </GameProsFire>
-                    <GameProsTGTLabel>
-                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
-                        <GameProsTGTValue>
-                            133,4 TGT
-                        </GameProsTGTValue>
-                      
-                    </GameProsTGTLabel>
-                </GamePros>
-               </ImgDiv>
-               <ImgDiv>
-               <ImgContainer>
-                    <GameImg src='/UI/games/Cliff-Fishing.png'></GameImg>
-                </ImgContainer>
-                <GamePros>
-                    <GameProsName>
-                        The Adventures of stoneman
-                    </GameProsName>
-                    <GameProsFire>
-                     🔥🔥🔥 
-                    </GameProsFire>
-                    <GameProsTGTLabel>
-                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
-                        <GameProsTGTValue>
-                            133,4 TGT
-                        </GameProsTGTValue>
-                      
-                    </GameProsTGTLabel>
-                </GamePros>
-               </ImgDiv>
-               <ImgDiv>
-               <ImgContainer>
-                    <GameImg src='/UI/games/Wilderness-Forest.png'></GameImg>
-                </ImgContainer>
-                <GamePros>
-                    <GameProsName>
-                        The Adventures of stoneman
-                    </GameProsName>
-                    <GameProsFire>
-                     🔥🔥🔥 
-                    </GameProsFire>
-                    <GameProsTGTLabel>
-                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
-                        <GameProsTGTValue>
-                            133,4 TGT
-                        </GameProsTGTValue>
-                      
-                    </GameProsTGTLabel>
-                </GamePros>
-               </ImgDiv>
-               <ImgDiv>
-               <ImgContainer>
-                    <GameImg src='/UI/games/Sakura-Monogatari.png'></GameImg>
-                </ImgContainer>
-                <GamePros>
-                    <GameProsName>
-                        The Adventures of stoneman
+                    Earth Invasion
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥
@@ -121,11 +121,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/Rose Date.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Fishing Party.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Fishing Party
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -141,11 +141,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/goldminer.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Gopher Agent.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Gopher Agent
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -161,11 +161,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/Goldfish-Slots.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Ninja Cat.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Ninja Cat
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -181,11 +181,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/lazy/Top-Shooter.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Speed Racing.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Speed Racing
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -202,11 +202,11 @@ export const GameWindow =()=>{
 
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/lazy/Town-Racing.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Super Route.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Super Route
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -222,11 +222,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/lazy/Milktea-Diary.png'></GameImg>
+                    <GameImg src='/UI/games/version2/The Adventure of a Penguin.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    The Adventure of a Penguin
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -242,11 +242,11 @@ export const GameWindow =()=>{
                </ImgDiv>
                <ImgDiv>
                <ImgContainer>
-                    <GameImg src='/UI/games/lazy/Cold-blood-Killer.png'></GameImg>
+                    <GameImg src='/UI/games/version2/Planet Adventure.png'></GameImg>
                 </ImgContainer>
                 <GamePros>
                     <GameProsName>
-                        The Adventures of stoneman
+                    Planet Adventuren
                     </GameProsName>
                     <GameProsFire>
                      🔥🔥🔥 
@@ -271,7 +271,7 @@ const GameWindowContainer = styled.div`
     position: fixed;
     overflow-y: auto;
     width:70%;
-    height:80%;
+    height:85%;
     top:6%;
     left:15%;
     background-color:rgba(0,0,0,1);
@@ -340,6 +340,7 @@ const GameProsName =styled.label`
     display:block ;
     position:relative;
     color:rgba(255,255,255,1);
+    text-align:center ;
     font-size:16px ;
     font-weight:700 ;
     font-family:Roboto ;

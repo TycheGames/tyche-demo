@@ -51,9 +51,11 @@ const baseUrl ='/assets/models/';
 
 const modelAssetTasks:Task[] = [
    { taskType: TaskType.Mesh,  name: 'cartoonCity',rootUrl: `${baseUrl}`, sceneFilename: 'city.gltf' },
-    { taskType: TaskType.Mesh,  name:'cartoonBoy',rootUrl: `${baseUrl}avatar/`, sceneFilename: 'boy-greeting-idle.glb' },
-   { taskType: TaskType.Mesh,  name: 'cartoonGuy',rootUrl: `${baseUrl}avatar/`, sceneFilename: 'bear-dancing-cheer.glb' },
-   { taskType: TaskType.Mesh,  name: 'cartoonDude',rootUrl: `${baseUrl}dude/`, sceneFilename: 'dude.babylon' },
+   { taskType: TaskType.Mesh,  name:'avart1',rootUrl: `${baseUrl}avatar/`, sceneFilename: 'avart1-hippop-idle-walking.glb' },
+   { taskType: TaskType.Mesh,  name:'avart2',rootUrl: `${baseUrl}avatar/`, sceneFilename: 'avart2-idle-breakdance.glb' },
+    { taskType: TaskType.Mesh,  name:'petDog3',rootUrl: `${baseUrl}dog/`, sceneFilename: 'dog3-thinking-hippop.glb' },
+  // { taskType: TaskType.Mesh,  name: 'cartoonGuy',rootUrl: `${baseUrl}avatar/`, sceneFilename: 'bear-dancing-cheer.glb' },
+  // { taskType: TaskType.Mesh,  name: 'cartoonDude',rootUrl: `${baseUrl}dude/`, sceneFilename: 'dude.babylon' },
     { taskType: TaskType.Mesh,  name: 'cartoonBalloon',rootUrl: `${baseUrl}balloon/`, sceneFilename: 'balloon.gltf' }
 ]
 const onButtonClicked = () => {
@@ -91,7 +93,7 @@ const MyFallback = () =>{
         </rectangle>
       </rectangle>
     </adtFullscreenUi>
-    <box ref ={boxRef} name='fallback' size={200}/>
+    <box ref ={boxRef} name='fallback' position-x={500} size={70}/>
       </>
 }
 
@@ -124,12 +126,27 @@ const MyModels = ()=>{
    
       //load city
       const cartoonCityTask =  assetManagerResult.taskNameMap['cartoonCity'] as MeshAssetTask;
-      cartoonCityTask.loadedMeshes[0].position = new Vector3(-300, -100, 600);
+      cartoonCityTask.loadedMeshes[0].position = new Vector3(0, 0, 0);
       cartoonCityTask.loadedMeshes[0].scaling = new Vector3(1, 1, 1);
-      cartoonCityTask.loadedMeshes[0].receiveShadows=true;
+      //cartoonCityTask.loadedMeshes[0].receiveShadows=true;
+      for(var i=0;i<cartoonCityTask.loadedMeshes.length;i++){
+         if(cartoonCityTask.loadedMeshes[i].name==='ROAD'){
+            console.log(cartoonCityTask.loadedMeshes[i].name);
+            cartoonCityTask.loadedMeshes[i].receiveShadows=true;
+          }
+          if(cartoonCityTask.loadedMeshes[i].name==='ROAD.Lines.12'){
+            console.log(cartoonCityTask.loadedMeshes[i].name);
+            cartoonCityTask.loadedMeshes[i].receiveShadows=true;
+          }
+          
+       
+      }
+      
+  
 
  
     //load cartoon boy
+    /*
      const cartoonBoyTask= assetManagerResult.taskNameMap['cartoonBoy'] as MeshAssetTask;
      let cartoonBoyMesh=cartoonBoyTask.loadedMeshes[0];
      let cartoonBoyAnimationGroup=cartoonBoyTask.loadedAnimationGroups;
@@ -138,41 +155,148 @@ const MyModels = ()=>{
      cartoonBoyAnimationGroup[0].loopAnimation=true;
      console.log(cartoonBoyAnimationGroup);
      cartoonBoyTask.loadedMeshes[0].position = new Vector3(300, -200, -600);
-     cartoonBoyTask.loadedMeshes[0].scaling= new Vector3(20,20,20);
+     cartoonBoyTask.loadedMeshes[0].scaling= new Vector3(20,20,20);*/
+
+     //load avart #1
+
+     const avart1Task= assetManagerResult.taskNameMap['avart1'] as MeshAssetTask;
+     let avart1Mesh=avart1Task.loadedMeshes[0];
+    
+     let avart1AnimationGroup=avart1Task.loadedAnimationGroups;
+     console.log(avart1AnimationGroup);
+     avart1AnimationGroup[0].stop();
+     avart1AnimationGroup[2].start();
+     avart1AnimationGroup[2].loopAnimation=true;
+     avart1Task.loadedMeshes[0].position = new Vector3(500, -120, -450);
+     avart1Task.loadedMeshes[0].rotate(BABYLON.Axis.Y, BABYLON.Tools.ToRadians(0), BABYLON.Space.LOCAL);
+     avart1Task.loadedMeshes[0].scaling= new Vector3(50,50,50);
+     avart1Task.loadedMeshes[0].isPickable=true;
+     DashboardWindow.addAvart(avart1Mesh);
+
+     (scene?.getLightByName('direct-light')?.getShadowGenerator() as BABYLON.ShadowGenerator).addShadowCaster(avart1Mesh);
+
+     //load avart #2
+
+     const avart2Task= assetManagerResult.taskNameMap['avart2'] as MeshAssetTask;
+     let avart2Mesh=avart2Task.loadedMeshes[0];
+    
+     let avart2AnimationGroup=avart2Task.loadedAnimationGroups;
+     console.log(avart2AnimationGroup);
+     avart2AnimationGroup[0].stop();
+     avart2AnimationGroup[1].start();
+     avart2AnimationGroup[1].loopAnimation=true;
+     avart2Task.loadedMeshes[0].position = new Vector3(500, -120, -450);
+     avart2Task.loadedMeshes[0].rotate(BABYLON.Axis.Y, BABYLON.Tools.ToRadians(0), BABYLON.Space.LOCAL);
+     avart2Task.loadedMeshes[0].scaling= new Vector3(50,50,50);
+     avart2Task.loadedMeshes[0].isPickable=true;
+     DashboardWindow.addAvart(avart2Mesh);
+     avart2Task.loadedMeshes[0].setEnabled(false);
+  
+     (scene?.getLightByName('direct-light')?.getShadowGenerator() as BABYLON.ShadowGenerator).addShadowCaster(avart2Mesh);
+
+     // load dog pet 2
+     const dogPetTask =  assetManagerResult.taskNameMap['petDog3'] as MeshAssetTask;
+      let dogPetMesh=dogPetTask.loadedMeshes[0];
+      let dogPetAnimationGroup:AnimationGroup[]=dogPetTask.loadedAnimationGroups;
+      dogPetMesh.isPickable=true;
+      dogPetAnimationGroup[0].loopAnimation=true;
+      dogPetMesh.position = new Vector3(450, -120, -450);
+      dogPetMesh.scaling = new Vector3(50,50,50);
+      dogPetMesh.rotation =new Vector3(0,10,0);
+      (scene?.getLightByName('direct-light')?.getShadowGenerator() as BABYLON.ShadowGenerator).addShadowCaster(dogPetMesh);
 
     //load dude
+    /*
       const dudeTask= assetManagerResult.taskNameMap['cartoonDude'] as MeshAssetTask;
       dudeTask.loadedMeshes[0].position = new Vector3(200, -220, 600);
       dudeTask.loadedMeshes[0].rotate(BABYLON.Axis.Y, BABYLON.Tools.ToRadians(0), BABYLON.Space.LOCAL);
       dudeTask.loadedMeshes[0].scaling= new Vector3(3,3,3);
       dudeTask.loadedMeshes[0].isPickable=true;
       scene!.beginAnimation(dudeTask.loadedSkeletons[0],0,100,true);
+      */
 
     //load cartoon bear
-      const cartoonGuyTask =  assetManagerResult.taskNameMap['cartoonGuy'] as MeshAssetTask;
-      let cartoonGuyMesh=cartoonGuyTask.loadedMeshes[0];
-      let cartoonGuyAnimationGroup:AnimationGroup[]=cartoonGuyTask.loadedAnimationGroups;
-      cartoonGuyMesh.isPickable=true;
-     // cartoonGuyAnimationGroup[0].stop();
-      //cartoonGuyAnimationGroup[1].play();
-      cartoonGuyAnimationGroup[1].loopAnimation=true;
-     // console.log(cartoonGuyAnimationGroup);
-      cartoonGuyMesh.position = new Vector3(200, -220, -600);
-      cartoonGuyMesh.scaling = new Vector3(50,50,50);
-      cartoonGuyMesh.rotation =new Vector3(0,10,0);
-     // console.log(cartoonGuyTask.loadedMeshes);
+   //  const cartoonGuyTask =  assetManagerResult.taskNameMap['cartoonGuy'] as MeshAssetTask;
+     // let cartoonGuyMesh=cartoonGuyTask.loadedMeshes[0];
+      //let cartoonGuyAnimationGroup:AnimationGroup[]=cartoonGuyTask.loadedAnimationGroups;
+      //cartoonGuyMesh.isPickable=true;
 
+     // cartoonGuyAnimationGroup[1].loopAnimation=true;
+
+     // cartoonGuyMesh.position = new Vector3(200, -220, -600);
+     // cartoonGuyMesh.scaling = new Vector3(50,50,50);
+     // cartoonGuyMesh.rotation =new Vector3(0,10,0);
+      
+   
+    /*
     scene?.onBeforeRenderObservable.add(()=>{
       if(cartoonBoyAnimationGroup[1].isPlaying===false&&cartoonBoyAnimationGroup[0].isPlaying===false){
         cartoonBoyAnimationGroup[0].start();
       }
-    });
+    });*/
       scene?.onPointerObservable.add((evt:BABYLON.PointerInfo)=>{
         if(evt.type===BABYLON.PointerEventTypes.POINTERPICK){
 
           var ray =scene.createPickingRay(scene.pointerX,scene.pointerY,BABYLON.Matrix.Identity(),scene.activeCamera);
           var hit =scene.pickWithRay(ray);
          console.log(hit?.pickedMesh?.parent?.name);
+         console.log(hit?.pickedMesh?.name);
+
+         if(hit?.pickedMesh?.parent?.name==='avart1'){
+           console.log(avart1AnimationGroup[2].isPlaying);
+           console.log(avart1AnimationGroup[1].isPlaying);
+          if(avart1AnimationGroup[2].isPlaying===true){
+            avart1AnimationGroup[2].stop();
+            avart1AnimationGroup[1].start();
+            avart1AnimationGroup[1].loopAnimation=true;
+            console.log("idle")
+          }else{
+            
+            if(avart1AnimationGroup[1].isPlaying===true){
+              avart1AnimationGroup[1].stop();
+              avart1AnimationGroup[2].start();
+              avart1AnimationGroup[2].loopAnimation=true;
+  
+            }else{
+              avart1AnimationGroup[2].stop();
+              avart1AnimationGroup[1].start();
+              avart1AnimationGroup[1].loopAnimation=true;
+  
+            }
+
+          }
+         
+
+            console.log('Boy hited');
+         }
+         if(hit?.pickedMesh?.parent?.name==='avart2'){
+          console.log(avart2AnimationGroup[1].isPlaying);
+          console.log(avart2AnimationGroup[0].isPlaying);
+         if(avart2AnimationGroup[1].isPlaying===true){
+           avart2AnimationGroup[1].stop();
+           avart2AnimationGroup[0].start();
+           avart2AnimationGroup[0].loopAnimation=true;
+           console.log("idle")
+         }else{
+           
+           if(avart2AnimationGroup[0].isPlaying===true){
+             avart2AnimationGroup[0].stop();
+             avart2AnimationGroup[1].start();
+             avart2AnimationGroup[1].loopAnimation=true;
+ 
+           }else{
+             avart2AnimationGroup[1].stop();
+             avart2AnimationGroup[0].start();
+             avart2AnimationGroup[0].loopAnimation=true;
+ 
+           }
+
+         }
+        
+
+           console.log('Boy2 hited');
+        }
+         /*
          if(hit?.pickedMesh?.parent?.name==='Boy_With_Color'){
           if(cartoonBoyAnimationGroup[0].isPlaying===true){
             cartoonBoyAnimationGroup[0].stop();
@@ -188,7 +312,8 @@ const MyModels = ()=>{
 
             console.log('Boy hited');
          }
-         
+         */
+        /*
         if(hit?.pickedMesh?.name==='Ch14'){
           console.log("0 isplaying :"+cartoonGuyAnimationGroup[0].isPlaying);
           console.log("1 isplaying :"+cartoonGuyAnimationGroup[1].isPlaying);
@@ -206,6 +331,7 @@ const MyModels = ()=>{
         
             console.log("Bear picked");
         }
+        */
         }
 
 
@@ -223,11 +349,12 @@ const MyModels = ()=>{
 
 
      //cartoon dude partrol the city
+     /*
       let distance=0;
       let step=2;
       let p=0;
      
- 
+      
         const startRotation = dudeTask.loadedMeshes[0].rotationQuaternion!.clone();
         const track:walk[]=[];
 
@@ -251,10 +378,10 @@ const MyModels = ()=>{
             dudeTask.loadedMeshes[0].rotationQuaternion = startRotation.clone();
           }
         }
-      });
+      });*/
       
       const cartoonBalloonTask =  assetManagerResult.taskNameMap['cartoonBalloon'] as MeshAssetTask;
-      cartoonBalloonTask.loadedMeshes[0].position = new Vector3(-100, 300, 200);
+      cartoonBalloonTask.loadedMeshes[0].position = new Vector3(300, 350, 200);
       cartoonBalloonTask.loadedMeshes[0].scaling = new Vector3(300, 300,300);
 
       
@@ -272,7 +399,7 @@ if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletSt
   planeRef.current!.isVisible=true;
 }
   return(
-  <plane name="dialog2" ref={planeRef} size={400} position={new Vector3(700, 20, -300)}  sideOrientation={Mesh.BACKSIDE} isVisible={false}>
+  <plane name="dialog2" ref={planeRef} rotation={new Vector3(0,-300,0)} size={400} position={new Vector3(1000, 120, -900)}  sideOrientation={Mesh.BACKSIDE} isVisible={false}>
   <advancedDynamicTexture
    name="dialogTexture"
    height={300} width={700}
@@ -299,7 +426,7 @@ const CASINOlogo =()=>{
     casinoRef.current!.isVisible=true;
   }
   return(
-  <plane name="dialog" ref={casinoRef} size={400} position={new Vector3(-300, 300, -250)} sideOrientation={Mesh.BACKSIDE} isVisible={false} >
+  <plane name="dialog" ref={casinoRef} size={400} position={new Vector3(0, 400, -850)} sideOrientation={Mesh.BACKSIDE} isVisible={false} >
   <advancedDynamicTexture
    name="dialogTexture"
    height={300} width={700}
@@ -358,7 +485,8 @@ const UI= ()=>{
 if(walletOpt.status===WalletStatus.WALLET_CONNECTED){
   console.log("connected");
   if(connectText){
-    connectText!.text=walletOpt.wallets[0].terraAddress;
+   // connectText!.text=walletOpt.wallets[0].terraAddress;
+    connectText!.text=(walletOpt.wallets[0].terraAddress).slice(0,8)+'...'+(walletOpt.wallets[0].terraAddress).slice(-8);
     connectText!.resizeToFit=true;
 
   }
@@ -595,19 +723,23 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
       
       <Engine antialias adaptToDeviceRatio canvasId='Tyche-demo'>
         <Scene>
-          <hemisphericLight name='hemi-light' intensity={1} direction={Vector3.Up()} range={1000} />
+          <hemisphericLight name='hemi-light' intensity={0.6} direction={Vector3.Up()} range={500} shadowEnabled={true} >
+           
+          </hemisphericLight>
    
-  
+          <directionalLight name='direct-light' intensity={2} direction={new Vector3(2,-2,1)} range={1500} shadowEnabled={true}>
+            <shadowGenerator mapSize={1024}></shadowGenerator>
+          </directionalLight>
 
           <EqSkybox name='skybox' blur={0.1} rootUrl={SkyboxUrl}></EqSkybox>
   
-          <arcRotateCamera  id={'1'} name='arcCamera' target={Vector3.Zero()} radius={1600} 
-            alpha ={-Math.PI / 2} beta={(Math.PI / 1)} minZ = {0.3} upperBetaLimit={Math.PI/2} lowerRadiusLimit={500} wheelPrecision = {50}
-              onCreated={()=>{}}  />
+          <arcRotateCamera  id={'1'} name='arcCamera' target={new Vector3(500,0,-400)} radius={800} 
+            alpha ={-Math.PI / 2} beta={(Math.PI / 2.4)} minZ = {0.3} upperBetaLimit={Math.PI/2} lowerRadiusLimit={500} upperRadiusLimit={1600} wheelPrecision={0.4}
+              onCreated={()=>{}} />
   
          {/* </arcRotateCamera>
             <arcRotateCamera  id={'2'} name='arcCamera1' target={Vector3.Zero()} radius={1600}  useAutoRotationBehavior
-            alpha ={-Math.PI / 2} beta={(Math.PI / 2.5)} minZ = {0.3} upperBetaLimit={Math.PI/2} lowerRadiusLimit={1000} wheelPrecision = {50}
+            alpha ={-Math.PI / } beta={(Math.PI / 2.5)} minZ = {0.3} upperBetaLimit={Math.PI/2} lowerRadiusLimit={1000} wheelPrecision = {50}
               onCreated={alwaysActive} layerMask={2}
           >
              <viewport x={0} y={0} height={1} width={0.5} />
@@ -621,12 +753,12 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
          </AssetManagerContextProvider>
         <NFTlogo/>
         <CASINOlogo/>
-   
+        <UI/>
         
    
         </Scene>
         
-         
+         {/**
          <Scene autoClear={false} onSceneMount={sceneMounted} onPointerObservable={(evt:BABYLON.PointerInfo)=>{
            if(evt.type===BABYLON.PointerEventTypes.POINTERPICK){
              let mesh=evt.pickInfo?.pickedMesh;
@@ -668,7 +800,7 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
        
        
           </Scene>
-     
+      */}
        
       </Engine>
     </div>

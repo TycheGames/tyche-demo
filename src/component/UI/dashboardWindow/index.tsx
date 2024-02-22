@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { Nullable } from "@babylonjs/core/types";
 import { SwapWindow } from "../swapWindow";
 import {AiOutlineClose,AiOutlineArrowDown} from 'react-icons/ai'
+import * as BABYLON from '@babylonjs/core';
 
 let containerRef:React.MutableRefObject<Nullable<HTMLDivElement>>;
+
+let avartMesh:BABYLON.AbstractMesh[]=[];
 
 export const  DashboardWindow=()=>{
 
@@ -26,9 +29,7 @@ export const  DashboardWindow=()=>{
 
             <RewardContainer/>
 
-            <BurnedContainer>
-
-            </BurnedContainer>
+            <BurnedContainer/>
 
 
         </Container>
@@ -40,10 +41,10 @@ const Container =styled.div`
     display: none;
     position: fixed;
     overflow-y: auto;
-    width:1200px;
-    height:1000px;
-    top:5%;
-    left:10%;
+    width:88%;
+    height:90%;
+    top:6%;
+    left:5%;
     background-color:rgba(0,0,0,1);
     border:0;
     border-radius:10px ;
@@ -121,7 +122,7 @@ const BalanceContainerStyled=styled.div`
     top:10px;
     left:26px;
     background-color:rgba(58,58,58,0.3);
-    width:97%;
+    width:98%;
     height:80px;
     border-radius:12px ;
 
@@ -171,39 +172,57 @@ const NFTContainer = ()=>{
             </NFTLabel>
             <NFTElementContainer>
                 <NFTElementDiv>
-                    <NFTCheckInput type='radio' name='NFTRadio' value='' defaultChecked={true}/>
+                    <NFTCheckInput type='radio' name='NFTRadio' value='avart1' defaultChecked={true} onChange={(e)=>{
+                        console.log("radio changed"+e.currentTarget.value)
+                        if(e.currentTarget.value==='avart1'){
+                            avartMesh[0].setEnabled(true);
+                            avartMesh[1].setEnabled(false);
+                        }
+                       
+                    }} />
                     <NFTElement src='/assets/NFT/img/1@2x.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 12 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: points X2</span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 12 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: points X2</span>
                     </NFTPros>
                 </NFTElementDiv>
                 <NFTElementDiv>
-                    <NFTCheckInput type='radio' name='NFTRadio'/>
+                    <NFTCheckInput type='radio' name='NFTRadio' value='avart2' onChange={(e)=>{
+                        console.log("radio changed"+e.currentTarget.value)
+                    }} />
                     <NFTElement src='/assets/NFT/img/2@2x.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+8</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 10 <span style={{color:'rgba(36,174,100,1)'}}>+3</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: Hashpower X2</span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+8</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 10 <span style={{color:'rgba(36,174,100,1)'}}>+3</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: Hashpower X2</span>
                     </NFTPros>
                 </NFTElementDiv>
                 <NFTElementDiv>
-                    <NFTCheckInput type='radio' name='NFTRadio'/>
+                    <NFTCheckInput type='radio' name='NFTRadio' value='avart3' onChange={(e)=>{
+                        console.log("radio changed"+e.currentTarget.value);
+                      
+                    }}/>
                     <NFTElement src='/assets/NFT/img/3@2x.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+4</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 7 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: luck X2</span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+4</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 7 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: luck X2</span>
                     </NFTPros>
                 </NFTElementDiv>
                 <NFTElementDiv>
-                    <NFTCheckInput type='radio' name='NFTRadio'/>
+                    <NFTCheckInput type='radio' name='NFTRadio' value='avart4'  onChange={(e)=>{
+                        console.log("radio changed"+e.currentTarget.value)
+                        if(e.currentTarget.value==='avart4'){
+                            avartMesh[1].setEnabled(true);
+                            avartMesh[0].setEnabled(false);
+                        }
+                    }}/>
                     <NFTElement src='/assets/NFT/img/4@2x.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: - </span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: - </span>
                     </NFTPros>
                 </NFTElementDiv>
             </NFTElementContainer>
@@ -215,22 +234,22 @@ const NFTContainer = ()=>{
             </NFTLabel>
             <NFTElementContainer>
                 <NFTElementDiv>
-                <NFTCheckInput type='radio' name='NFTPetRadio' value={'dog1'} defaultChecked={true}/>
+                <NFTCheckInput type='radio' name='NFTPetRadio' value={'dog1'} />
                    <NFTElement src='/assets/NFT/pet/dog1.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 12 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: points X2</span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 12 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: points X2</span>
                     
                     </NFTPros>
                 </NFTElementDiv>
                 <NFTElementDiv>
-                    <NFTCheckInput type='radio' name='NFTPetRadio'/>
+                    <NFTCheckInput type='radio' name='NFTPetRadio' defaultChecked={true}/>
                     <NFTElement src='/assets/NFT/pet/dog2.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: - </span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: - </span>
                     
                     </NFTPros>
                 </NFTElementDiv>
@@ -238,9 +257,9 @@ const NFTContainer = ()=>{
                     <NFTCheckInput type='radio' name='NFTPetRadio'/>
                     <NFTElement src='/assets/NFT/pet/dog3.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: - </span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: - </span>
                     
                     </NFTPros>
                 </NFTElementDiv>
@@ -248,9 +267,9 @@ const NFTContainer = ()=>{
                     <NFTCheckInput type='radio' name='NFTPetRadio'/>
                     <NFTElement src='/assets/NFT/pet/dog4.png'/>
                     <NFTPros>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
-                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'10px',left:'40px'}}>buff: - </span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>Hashpower: 100 <span style={{color:'rgba(36,174,100,1)'}}>+2</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>luck: 3 <span style={{color:'rgba(36,174,100,1)'}}>+12</span></span>
+                    <span style={{display:'block',position:'relative',color:'rgba(255,255,255,1)',top:'6px',left:'60px'}}>buff: - </span>
                     
                     </NFTPros>
                 </NFTElementDiv>
@@ -289,6 +308,7 @@ const NFTLabel = styled.label`
 const NFTElementContainer =styled.div`
     display:block;
     position: relative;
+    text-align:center ;
     top:10px;
     height: 330px;
     left:16px;
@@ -302,8 +322,8 @@ const NFTElementDiv = styled.div `
     position:relative ;
     height:80%;
     vertical-align:top;
-    margin-left:12px ;
-    width:270px;
+    margin-left:2% ;
+    width:auto;
     background-color:rgba(0,0,0,0) ;
     border:0;
 `;
@@ -328,8 +348,9 @@ const NFTProsContainer =styled.div`
 `;
 const NFTPros =styled.div`
     display:block;
-    height:70px;
+    height:75px;
     width:100%;
+    text-align:left ;
     font-family:Robot ;
     font-weight:400 ;
     font-size:15px ;
@@ -342,6 +363,7 @@ const NFTCheckInput =styled.input`
     width: 25px;
     height: 25px;
     z-index: 1 ;
+    cursor: pointer;
     :checked{
         color:red;
     }
@@ -464,7 +486,7 @@ const RewardContainerStyle=styled.div`
     position: relative;
     top:20px;
     width:98%;
-    height:400px;
+    height:330px;
     left:16px;
     background-color:rgba(58,58,58,0.3) ;
     border-radius:12px ;
@@ -482,10 +504,10 @@ const RewardLabel =styled.label`
 const RewardDiv =styled.div`
     display:block;
     top:5px;
-    left:5px;
     border:2px;
     border-color:white ;
     position:relative;
+    text-align:center ;
     width:99%;
     height:280px;
     background-color: rgba(0,0,0,0) ;
@@ -494,10 +516,11 @@ const RewardDiv =styled.div`
 const RewardElement =styled.div`
     display:inline-block ;
     position:relative ;
+   
     vertical-align:top ;
-    margin-left:20px ;
+    margin-left:32px ;
     height:270px;
-    width:360px;
+    width:350px;
     border-style:solid ;
     border-radius:7px;
     border-width:2px ;
@@ -525,6 +548,7 @@ const RewardContentDiv =styled.div`
     top:10px;
     margin-top:20px ;
     position:relative;
+    text-align:left ;
     width:100%;
 
 `
@@ -532,6 +556,7 @@ const RewardContent= styled.label`
     display:inline-block;
     position: relative;
     color:rgba(255,255,255,0.8);
+    left:40px;
     font-size:14px ;
     font-weight:400 ;
     font-family:IBM Plex Sans ;
@@ -539,6 +564,7 @@ const RewardContent= styled.label`
 const RewardValue =styled.span`
     display:block;
     position:relative;
+    right:40px;
     float:right;
     color:rgba(255,255,255,1);
     font-size: 14px ;
@@ -581,16 +607,53 @@ const GameButton=styled.button`
 
 `;
 
-const BurnedContainer=styled.div`
-
+const BurnedContainer =()=>{
+    return(
+        <BurnedContainerStyle>
+            <BurnedLabel>
+                Total Burned TGT:
+            </BurnedLabel>
+            <BurnedValueDiv>
+                <span style={{position:'relative',top:'30px'}}>🔥  10000 TGT</span>
+            </BurnedValueDiv>
+        </BurnedContainerStyle>
+    );
+}
+const BurnedContainerStyle=styled.div`
+    display:block;
+    position:relative ;
+    width:98%;
+    left:16px;
+    top:20px;
 `;
+
+const BurnedLabel = styled.label`
+    display:block ;
+    position:relative ;
+    left:26px;
+    font-size: 20px ;
+    color:rgba(255,255,255,1);
+    font-weight: 600;
+    font-family: IBM Plex Sans ;
+`;
+const BurnedValueDiv =styled.div`
+    display:block;
+    position:relative ;
+    height:100px;
+    background-color:rgba(58,58,58,0.6) ;
+    border-radius:12px ;
+    font-size: 32px;
+    color:rgba(255,255,255,1);
+    text-align:center ;
+`;
+
 
 const SwapButton=styled.button`
     display:block;
     position:relative ;
     width:208px;
     height:40px;
-    left:16px;
+    left:0px;
 
     border-radius:8px ;
     background-color:rgba(240,198,77,1) ;
@@ -618,4 +681,8 @@ DashboardWindow.showWindow =(show:boolean)=>{
     }
     */
    
+}
+
+DashboardWindow.addAvart=(avart:BABYLON.AbstractMesh)=>{
+    avartMesh.push(avart);
 }

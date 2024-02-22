@@ -101,6 +101,88 @@ export const NFTMarketWindow =()=>{
                     </GameProsTGTLabel>
                 </GamePros>
                </ImgDiv>
+               <ImgDiv>
+               <NFTContainer>
+                    <DiamondImg src='/assets/NFT/diamond/diamond1.png'/>
+                </NFTContainer>
+                <GamePros>
+                    <GameProsName>
+                    Diamond #1
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            300 TGT
+                        </GameProsTGTValue>
+                        <NFTBuyBtn>Buy NFT</NFTBuyBtn>
+                      
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <NFTContainer>
+                    <DiamondImg src='/assets/NFT/diamond/diamond2.png'/>
+                </NFTContainer>
+                <GamePros>
+                    <GameProsName>
+                    Diamond #2
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            100 TGT
+                        </GameProsTGTValue> 
+                        <NFTBuyBtn>Buy NFT</NFTBuyBtn>
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <NFTContainer>
+                    <DiamondImg src='/assets/NFT/diamond/diamond3.png'/>
+                </NFTContainer>
+                <GamePros>
+                    <GameProsName>
+                    Diamond #3
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            133 TGT
+                        </GameProsTGTValue>
+                        <NFTBuyBtn>Buy NFT</NFTBuyBtn>
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
+               <ImgDiv>
+               <NFTContainer>
+                    <DiamondImg src='/assets/NFT/diamond/diamond4.png'/>
+                </NFTContainer>
+                <GamePros>
+                    <GameProsName>
+                        Diamond #4
+                    </GameProsName>
+                    <GameProsFire>
+                     🔥🔥🔥 
+                    </GameProsFire>
+                    <GameProsTGTLabel>
+                       <LogoImg src='/UI/images/TGlogo48px.png' alt={'stoneman'}/>
+                        <GameProsTGTValue>
+                            50 TGT
+                        </GameProsTGTValue>
+                        <NFTBuyBtn>Buy NFT</NFTBuyBtn>
+                      
+                    </GameProsTGTLabel>
+                </GamePros>
+               </ImgDiv>
             </NFTGrid>
 
         </NFTWindowContainer>
@@ -149,6 +231,7 @@ const ImgDiv =styled.div`
     width:100%;
     height:100%;
     position:relative ;
+    text-align:center ;
 
 `;
 const NFTContainer= styled.div`
@@ -167,6 +250,18 @@ const  GameImg =styled.img`
     
     
 `;
+
+const DiamondImg=styled.img`
+    display:block;
+    position:relative ;
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    margin:0 auto ;
+    
+
+`;
+
 
 const GamePros =styled.div`
     display:block;
@@ -234,6 +329,12 @@ const NFTBuyBtn =styled.button`
 
 `;
 
+const InputTest =styled.input.attrs({onClick:(e)=>{
+    
+},item:''})`
+
+`
+
 const NFTGrid =styled.div`
     display:grid;
     position:relative;
@@ -241,7 +342,7 @@ const NFTGrid =styled.div`
     width:96%;
     left:20px;
     grid-template-columns:repeat(4,1fr) ;
-    grid-template-rows:repeat(1,1fr);
+    grid-template-rows:repeat(2,1fr);
     grid-gap:20px;
     background-color: rgba(0,0,0,0);
 
