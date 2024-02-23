@@ -1,5 +1,5 @@
 import "./styles.css";
-import React,{useContext, useMemo, useRef,Suspense} from 'react';
+import React,{useContext, useMemo, useRef,Suspense,useState,useEffect} from 'react';
 import "@babylonjs/loaders";
 import {  AnimationGroup, float,  Mesh, MeshAssetTask, Nullable, StandardMaterial, VideoTexture} from "@babylonjs/core";
 import { Texture } from "@babylonjs/core/Materials/Textures/texture.js";
@@ -24,7 +24,7 @@ import * as BABYLON from '@babylonjs/core';
 
 import { AdvancedDynamicTexture, Rectangle, TextBlock} from "@babylonjs/gui";
 
-import {useWallet,Wallet, WalletStatus, ConnectType} from "@terra-money/wallet-provider"; 
+
 
 import {Dropdown} from './component/Dropdown';
 import { VideoPlane } from "./component/VideoPlane";
@@ -34,10 +34,15 @@ import {DashboardWindow}  from './component/UI/dashboardWindow';
 import {GameWindow}  from './component/UI/gameWindow';
 import {NFTMarketWindow}  from './component/UI/NFTMarketWindow';
 
+import { createWalletClient, custom } from 'viem'
+import { mainnet } from 'viem/chains'
+ 
 
 
 
-let walletOpt:Wallet;
+
+
+
 let connectText:TextBlock;
 const refPlane=React.createRef<Mesh>();
 
@@ -395,11 +400,11 @@ const MyModels = ()=>{
 }
 const NFTlogo =()=>{
 let planeRef =useRef<Nullable<Mesh>>();
-if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
-  planeRef.current!.isVisible=true;
-}
+// if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
+//   planeRef.current!.isVisible=true;
+// }
   return(
-  <plane name="dialog2" ref={planeRef} rotation={new Vector3(0,-300,0)} size={400} position={new Vector3(1000, 120, -900)}  sideOrientation={Mesh.BACKSIDE} isVisible={false}>
+  <plane name="dialog2" ref={planeRef} rotation={new Vector3(0,-300,0)} size={400} position={new Vector3(1000, 120, -900)}  sideOrientation={Mesh.BACKSIDE} isVisible={true}>
   <advancedDynamicTexture
    name="dialogTexture"
    height={300} width={700}
@@ -422,11 +427,11 @@ if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletSt
 
 const CASINOlogo =()=>{
   let casinoRef =useRef<Nullable<Mesh>>();
-  if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
-    casinoRef.current!.isVisible=true;
-  }
+  // if(walletOpt.status===WalletStatus.WALLET_CONNECTED||walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
+  //   casinoRef.current!.isVisible=true;
+  // }
   return(
-  <plane name="dialog" ref={casinoRef} size={400} position={new Vector3(0, 400, -850)} sideOrientation={Mesh.BACKSIDE} isVisible={false} >
+  <plane name="dialog" ref={casinoRef} size={400} position={new Vector3(0, 400, -850)} sideOrientation={Mesh.BACKSIDE} isVisible={true} >
   <advancedDynamicTexture
    name="dialogTexture"
    height={300} width={700}
@@ -477,26 +482,30 @@ const HdrSkybox=(props:EqSkyboxProps) => {
 
 const UI= ()=>{
   //Load UI
+const[connected,setConnected] =useState<Boolean>(false)
+const[address,setAddress] =useState('');
 
-
-//const[connectText,setText]=useState<Nullable<TextBlock>>(null);
+// const[connectText,setText]=useState<Nullable<TextBlock>>(null);
 //console.log(walletOpt.status);
 
-if(walletOpt.status===WalletStatus.WALLET_CONNECTED){
+if(window.ethereum&&window.ethereum.isConnected()){
   console.log("connected");
   if(connectText){
    // connectText!.text=walletOpt.wallets[0].terraAddress;
-    connectText!.text=(walletOpt.wallets[0].terraAddress).slice(0,8)+'...'+(walletOpt.wallets[0].terraAddress).slice(-8);
+    connectText!.text=address.slice(0,8)+'...'+address.slice(-8);
     connectText!.resizeToFit=true;
 
   }
   
-}
-if(walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
+}else{
+  console.log('not connected')
   if(connectText){
-    connectText.text="Connect Wallet";
-  }
+     connectText.text="Connect Wallet";
+      }
 }
+
+
+
 
 const createUI=async(instance:AdvancedDynamicTexture,scene:BABYLON.Scene)=>{
   //build Dropdown list UI
@@ -567,7 +576,7 @@ const createUI=async(instance:AdvancedDynamicTexture,scene:BABYLON.Scene)=>{
   gamecloseBtn!.hoverCursor='pointer';
 
 
-console.log(walletOpt.status);
+// console.log(walletOpt.status);
 
 //add UI button click event
 NFTBtn?.onPointerClickObservable.add(()=>{
@@ -621,18 +630,37 @@ if(dashboardRec!.isVisible===true){
   dashboardRec!.isVisible=false;
 }
 });
-connectBtn?.onPointerClickObservable.add(()=>{
+connectBtn?.onPointerClickObservable.add(async()=>{
   
-  if(walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
-      walletOpt.connect(ConnectType.EXTENSION);
+//   if(walletOpt.status===WalletStatus.WALLET_NOT_CONNECTED){
+//       walletOpt.connect(ConnectType.EXTENSION);
      
    
-  }
-  if(walletOpt.status===WalletStatus.WALLET_CONNECTED){
-    walletOpt.disconnect();
+//   }
+//   if(walletOpt.status===WalletStatus.WALLET_CONNECTED){
+//     walletOpt.disconnect();
 
  
+// }
+if (window.ethereum){
+  const client = createWalletClient({
+  transport: custom(window .ethereum!)
+})
+try{
+  const [address] = await (client as any).requestAddresses()
+  setConnected(true)
+  setAddress(address)
+console.log(address)
+
+}catch(e){
+  console.log(e)
 }
+}else{
+  alert('Please install wallet extention!')
+}
+
+
+
   
 });
 //dashboard clicked
@@ -691,7 +719,7 @@ const App = () => {
   const canvas=useCanvas();
   const scene=useScene();
  
-  walletOpt=useWallet();
+  // walletOpt=useWallet();
   //console.log(walletOpt);
  
   
@@ -758,50 +786,6 @@ new BABYLON.ArcRotateCamera("Camera", -Math.PI / 2, Math.PI/2,1600, Vector3.Zero
    
         </Scene>
         
-         {/**
-         <Scene autoClear={false} onSceneMount={sceneMounted} onPointerObservable={(evt:BABYLON.PointerInfo)=>{
-           if(evt.type===BABYLON.PointerEventTypes.POINTERPICK){
-             let mesh=evt.pickInfo?.pickedMesh;
-            console.log(mesh?.name);
-           if(mesh?.name==="videoPlane1"){
-              let videoTex=((mesh?.material as StandardMaterial).diffuseTexture) as VideoTexture;
-              console.log(videoTex);
-              if(videoTex.video.paused===true){
-                videoTex.video.muted=false;
-                videoTex.video.play();
-              }else{
-                videoTex.video.pause();
-              }
-
-
-           }
-   
-            console.log(refPlane.current);
-             // console.log(videoRef.current?.video.paused);
-          //    if(videoRef.current?.video.paused===true){
-            //    videoRef.current.video.muted=false;
-              //  videoRef.current.video.play();
-              //}else{
-                //videoRef.current?.video.pause();
-             // }
-           
-           }
-       
-          
-         }}>
-        <hemisphericLight name='hemi-light' intensity={0.6} direction={Vector3.Up()}/>
-  
-         
-          <VideoPlane ref={refPlane}
-          ></VideoPlane>
-  
-          
-        <UI/>
-       
-       
-          </Scene>
-      */}
-       
       </Engine>
     </div>
     

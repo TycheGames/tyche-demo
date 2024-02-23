@@ -1,12 +1,9 @@
-import React from 'react';
-import {render} from 'react-dom';
+
 import App from './App';
-import TestPage from './component/TestPage';
-import ActorWindow  from './component/ActorWindow';
-import StyledComponent from './component/StyledComponent';
 
 
-import { getChainOptions, WalletProvider } from '@terra-money/wallet-provider';
+
+
 import ReactDOM from 'react-dom';
 
 
@@ -19,14 +16,14 @@ import ReactDOM from 'react-dom';
 //);
 
 
-getChainOptions().then((chainOptions) => {
+
     ReactDOM.render(
-      <WalletProvider {...chainOptions}>
+
        <App/>
-      </WalletProvider>,
+    ,
       document.getElementById('root'),
     );
-  });
+
   
   
  

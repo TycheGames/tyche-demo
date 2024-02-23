@@ -1,11 +1,11 @@
 import '../styles.css'
 import { useScene } from 'react-babylonjs'
-import { useWallet } from '@terra-money/wallet-provider';
+// import { useWallet } from '@terra-money/wallet-provider';
 
 export default function ActorWindow(){
 
- let  walletOpt=useWallet();
- console.log(walletOpt);
+//  let  walletOpt=useWallet();
+//  console.log(walletOpt);
 
 return(
     <div id='actorWin' className="ActorWindow">
